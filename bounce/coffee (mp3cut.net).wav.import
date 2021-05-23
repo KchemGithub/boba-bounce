@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/coffee (mp3cut.net).wav-a6cf0043040cb86b0f3bafc8ee7428e0.sample"
+
+[deps]
+
+source_file="res://coffee (mp3cut.net).wav"
+dest_files=[ "res://.import/coffee (mp3cut.net).wav-a6cf0043040cb86b0f3bafc8ee7428e0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

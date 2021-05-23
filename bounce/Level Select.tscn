@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Level Select.gd" type="Script" id=1]
+[ext_resource path="res://level select.png" type="Texture" id=2]
+[ext_resource path="res://Click.wav" type="AudioStream" id=3]
+[ext_resource path="res://3.png" type="Texture" id=4]
+[ext_resource path="res://2.png" type="Texture" id=5]
+[ext_resource path="res://4.png" type="Texture" id=6]
+[ext_resource path="res://1.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.478431, 0.231373, 0.309804, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.478431, 0.231373, 0.309804, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.478431, 0.231373, 0.309804, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.478431, 0.231373, 0.309804, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
+
+[node name="Level Select" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -16.0543
+margin_top = -3.56763
+margin_right = -16.0542
+margin_bottom = -3.56763
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 975.993, 543.998 )
+scale = Vector2( 2.56, 2.69995 )
+texture = ExtResource( 2 )
+
+[node name="levels" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -252.0
+margin_top = -152.0
+margin_right = 252.0
+margin_bottom = 152.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="Button" parent="levels"]
+margin_right = 300.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 300, 150 )
+custom_styles/normal = SubResource( 1 )
+text = "1"
+
+[node name="1" type="Sprite" parent="levels/1"]
+position = Vector2( 147.814, 74.4626 )
+scale = Vector2( 2.00249, 2.51592 )
+texture = ExtResource( 7 )
+
+[node name="2" type="Button" parent="levels"]
+margin_left = 304.0
+margin_right = 604.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 300, 150 )
+custom_styles/normal = SubResource( 2 )
+text = "2"
+
+[node name="2" type="Sprite" parent="levels/2"]
+position = Vector2( 160.545, 78.2827 )
+scale = Vector2( 1.90151, 2.67668 )
+texture = ExtResource( 5 )
+
+[node name="3" type="Button" parent="levels"]
+margin_top = 154.0
+margin_right = 300.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 300, 150 )
+custom_styles/normal = SubResource( 3 )
+text = "3"
+
+[node name="3" type="Sprite" parent="levels/3"]
+position = Vector2( 147.885, 78.1796 )
+scale = Vector2( 2.00249, 2.51592 )
+texture = ExtResource( 4 )
+
+[node name="4" type="Button" parent="levels"]
+margin_left = 304.0
+margin_top = 154.0
+margin_right = 604.0
+margin_bottom = 304.0
+custom_styles/normal = SubResource( 4 )
+text = "4"
+
+[node name="4" type="Sprite" parent="levels/4"]
+position = Vector2( 153.403, 75.8156 )
+scale = Vector2( 2.00249, 2.51592 )
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="button_down" from="levels/1" to="." method="_on_1_button_down"]
+[connection signal="pressed" from="levels/1" to="." method="_on_1_pressed"]
+[connection signal="button_down" from="levels/2" to="." method="_on_2_button_down"]
+[connection signal="pressed" from="levels/2" to="." method="_on_2_pressed"]
+[connection signal="button_down" from="levels/3" to="." method="_on_3_button_down"]
+[connection signal="pressed" from="levels/3" to="." method="_on_3_pressed"]
+[connection signal="button_down" from="levels/4" to="." method="_on_4_button_down"]

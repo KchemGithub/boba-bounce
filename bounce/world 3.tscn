@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/ball.png" type="Texture" id=1]
+[ext_resource path="res://Ball.gd" type="Script" id=2]
+[ext_resource path="res://world 3.gd" type="Script" id=3]
+[ext_resource path="res://VectorCreator.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 28.2084
+
+[node name="world 3" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="background" type="Sprite" parent="."]
+
+[node name="VectorCreator" parent="." instance=ExtResource( 4 )]
+position = Vector2( 964.215, 542.491 )
+scale = Vector2( 1.0149, 1.01171 )
+maximum_length = 1000
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2( 176.909, 803.061 )
+mass = 0.2
+gravity_scale = 20.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+scale = Vector2( 1.7, 1.7 )
+texture = ExtResource( 1 )
+
+[connection signal="vector_created" from="VectorCreator" to="Player" method="launch"]

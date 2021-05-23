@@ -1,0 +1,247 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://VectorCreator.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ball.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/ball.png" type="Texture" id=3]
+[ext_resource path="res://Arrow/sprite_arrow2.png" type="Texture" id=4]
+[ext_resource path="res://plant window.png" type="Texture" id=5]
+[ext_resource path="res://Worldcomplete.gd" type="Script" id=7]
+[ext_resource path="res://Arrow/sprite_arrow3.png" type="Texture" id=8]
+[ext_resource path="res://Arrow/sprite_arrow5.png" type="Texture" id=9]
+[ext_resource path="res://Arrow/sprite_arrow4.png" type="Texture" id=10]
+[ext_resource path="res://Arrow/sprite_arrow1.png" type="Texture" id=11]
+[ext_resource path="res://Arrow/sprite_arrow0.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/book 3.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/hanging plants.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/book 1.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/book 2.png" type="Texture" id=16]
+[ext_resource path="res://bounce.gd" type="Script" id=17]
+[ext_resource path="res://Bounce.wav" type="AudioStream" id=18]
+[ext_resource path="res://VectorCreatorScene.gd" type="Script" id=19]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.823
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 33.4205
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1200, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 22.6863, 100.105 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="VectorCreatorScene" type="Node2D"]
+script = ExtResource( 19 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 956.104, 540.03 )
+scale = Vector2( 2.00783, 1.79903 )
+texture = ExtResource( 5 )
+
+[node name="VectorCreator" parent="." instance=ExtResource( 1 )]
+position = Vector2( 972, 541.341 )
+scale = Vector2( 1, 0.98 )
+maximum_length = 1000
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2( 57.1293, 804.172 )
+mass = 0.2
+gravity_scale = 20.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="bounce" type="Area2D" parent="Player"]
+script = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/bounce"]
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Player/bounce"]
+stream = ExtResource( 18 )
+volume_db = -20.0
+
+[node name="player collision" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 5 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2( 0, 39.1995 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2( 979.272, 996.187 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1033.44, -406.249 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2( 1040.57, 1033.44 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2( 3014.8, -441.885 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2( 1051.25, 1086.87 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2( -46.3267, -1083.33 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2( 1040.57, 1083.33 )
+shape = SubResource( 2 )
+one_way_collision_margin = 3.7
+
+[node name="Worldcomplete" type="Area2D" parent="."]
+position = Vector2( 1674.43, 962.799 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Worldcomplete"]
+position = Vector2( 221.902, -17.7643 )
+shape = SubResource( 3 )
+
+[node name="arrow" type="AnimatedSprite" parent="."]
+position = Vector2( 1858, 945 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 4 )
+frame = 2
+playing = true
+
+[node name="hanging plants" type="Sprite" parent="."]
+position = Vector2( 958.62, 434.648 )
+scale = Vector2( 5.84572, 4.06656 )
+texture = ExtResource( 14 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="hanging plants"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hanging plants/StaticBody2D"]
+polygon = PoolVector2Array( -111.447, -0.696518, -109.653, 25.2789, -105.68, 39.8325, -98.8881, 47.3857, -90.9426, 51.2543, -83.5096, 51.0701, -77.1019, 47.5699, -71.9757, 41.6747, -67.3622, 29.7002, -65.0554, 15.1466, -64.2865, 4.46172, -64.9273, 1.32993, -65.6962, -2.72297, -111.575, -3.09142 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="hanging plants/StaticBody2D"]
+polygon = PoolVector2Array( -28.9094, -17.1041, -38.2221, -6.20119, -39.0861, -0.818764, -37.454, 6.08179, -31.9816, 10.7742, -24.109, 13.9484, -16.3324, 15.8806, -7.69177, 13.9484, 0.756882, 6.63383, 1.90897, -2.75092, -0.587219, -9.23745, -4.2355, -14.4819, -6.25166, -17.7941, -28.2373, -18.8982 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="hanging plants/StaticBody2D"]
+position = Vector2( -0.084919, -0.0903296 )
+scale = Vector2( 1.00434, 1.01849 )
+polygon = PoolVector2Array( 32.3453, 19.5779, 32.0224, 34.4327, 33.3141, 44.5294, 37.5927, 53.0012, 45.2623, 60.1965, 50.8328, 63.7941, 56.4033, 65.5349, 65.2838, 59.2681, 70.2892, 50.2159, 72.469, 44.9935, 73.4378, 37.1019, 73.5185, 27.8177, 73.1956, 18.8816, 70.37, 23.2916, 66.8985, 26.6572, 62.216, 28.0498, 55.6767, 28.8622, 51.5594, 27.9337, 44.5357, 26.1929, 39.1266, 24.22, 33.9598, 21.3187 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="hanging plants/StaticBody2D"]
+polygon = PoolVector2Array( 98.1997, -31.8625, 96.4346, -29.3252, 96.7062, -27.6662, 94.5338, -26.1047, 91.8183, -24.7385, 88.8312, -23.3723, 86.0478, -20.9325, 83.8075, -18.7856, 81.1599, -14.7845, 80.0058, -8.4412, 79.7343, -1.90277, 82.0425, 5.41638, 86.9983, 9.31992, 94.1264, 12.15, 101.933, 12.4427, 107.84, 12.7355, 115.239, 8.83199, 118.634, 3.36701, 121.689, -2.39072, 121.146, -8.83156, 118.226, -15.6628, 115.647, -19.3711, 112.795, -22.6891, 109.13, -24.153, 106.618, -25.0313, 104.31, -26.2999, 105.735, -30.3986, 104.853, -32.6432, 104.106, -32.936, 100.168, -33.0335 )
+
+[node name="book 1" type="Sprite" parent="."]
+position = Vector2( 1057.61, 903.224 )
+rotation = -0.446585
+scale = Vector2( 2.6801, 2.23055 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 1"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 1/StaticBody2D"]
+polygon = PoolVector2Array( -11.1619, -61.7933, 11.2257, -61.8508, 11.1043, 59.0035, 3.24486, 62.4437, -3.15317, 62.9094, -11.5078, 58.9319 )
+
+[node name="book 2" type="Sprite" parent="."]
+position = Vector2( 904.386, 877.803 )
+rotation = -0.159282
+scale = Vector2( 2.32436, 2.59839 )
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 2/StaticBody2D"]
+polygon = PoolVector2Array( -9.53116, -61.8235, 11.0113, -61.5726, 11.2012, 59.5233, 3.26871, 62.5178, -1.98224, 62.5901, -10.9076, 59.1025, -11.2489, -53.9515 )
+
+[node name="book 3" type="Sprite" parent="."]
+position = Vector2( 776.686, 881.798 )
+rotation = 0.0162743
+scale = Vector2( 2.32436, 2.59839 )
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 3/StaticBody2D"]
+polygon = PoolVector2Array( -11.0309, -62.0004, 11.1107, -61.5962, 11.1538, 58.6833, 4.974, 61.683, -2.87589, 62.2822, -11.3427, 58.7683 )
+
+[node name="book 4" type="Sprite" parent="."]
+position = Vector2( 957.878, 875.273 )
+rotation = -0.159282
+scale = Vector2( 2.32436, 2.59839 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 4/StaticBody2D"]
+polygon = PoolVector2Array( -12.0484, -61.4043, 11.1363, -61.4758, 11.1127, 58.7334, 2.51129, 62.9544, -3.39383, 63.0803, -11.3094, 58.6296 )
+
+[node name="book 5" type="Sprite" parent="."]
+position = Vector2( 830.928, 882.119 )
+scale = Vector2( 2.31851, 2.59195 )
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 5/StaticBody2D"]
+polygon = PoolVector2Array( -11.3158, -61.8695, 11.4428, -61.7884, 11.3365, 59.1023, 3.13235, 62.321, -3.34464, 62.4497, -10.8292, 58.5873 )
+
+[node name="book 6" type="Sprite" parent="."]
+position = Vector2( 566.2, 931.332 )
+rotation = 1.5779
+scale = Vector2( 2.99441, 2.51297 )
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 6"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 6/StaticBody2D"]
+polygon = PoolVector2Array( 10.9733, 49.4437, 19.3092, 53.7601, 26.8796, 53.1946, 32.9581, 49.3828, 33.5025, -70.9528, 10.7792, -71.2617 )
+
+[node name="book 7" type="Sprite" parent="."]
+position = Vector2( 588.67, 997.801 )
+rotation = 1.5779
+scale = Vector2( 2.99441, 2.51297 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="book 7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="book 7/StaticBody2D"]
+polygon = PoolVector2Array( -11.3109, -52.2218, -33.2741, -52.4579, -33.4996, 68.1195, -26.3987, 70.8732, -18.7192, 71.6523, -11.3019, 68.0721 )
+
+[connection signal="vector_created" from="VectorCreator" to="Player" method="launch"]

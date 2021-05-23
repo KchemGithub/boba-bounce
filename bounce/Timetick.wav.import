@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Timetick.wav-1bae22c92531bf0bead04d94564c6f7c.sample"
+
+[deps]
+
+source_file="res://Timetick.wav"
+dest_files=[ "res://.import/Timetick.wav-1bae22c92531bf0bead04d94564c6f7c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
